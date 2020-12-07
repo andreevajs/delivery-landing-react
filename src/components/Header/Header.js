@@ -14,13 +14,11 @@ import SlideImg2 from '../../resources/img/slide2.png';
 class Header extends Component {
     constructor(props) {
         super(props);
-        this.modal = new AuthorizationModal();
     }
 
     render() {
         return (
-            <header className="header">
-                {this.modal.render()}   
+            <header className="header">  
                 <div className="header__content">
                     <div className="header__navigation">
                         <div className="header__logo">
@@ -34,7 +32,7 @@ class Header extends Component {
                             <div className="header__phone">
                                 <Phone />
                             </div>                        
-                            <button className="button-login" onClick={() => this.modal.open()}>
+                            <button className="button-login" onClick={this.props.onLoginClick}>
                                 Вход
                             </button> 
                         </div>     
