@@ -1,0 +1,16 @@
+.phone {
+    float: right;
+}
+
+.phone__number {
+    width: 146px;
+    height: 21px;
+    margin-left: 12px;
+
+    display: inline-block;
+
+    font-size: 13px;
+    line-height: 185%;
+
+    color: #A9C5E0;
+}

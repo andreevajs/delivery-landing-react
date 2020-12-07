@@ -1,0 +1,41 @@
+.footer {
+    background: #23415E;
+    padding: 98px 0;
+}
+
+.footer__content {
+    max-width: 1170px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.footer__logo {
+    width: 170px;
+}
+
+.navigation {
+    font-size: 15px;
+    line-height: 240%;
+    margin-top: -7px;
+
+    display: flex;
+
+    color: #FFFFFF;
+}
+
+.navigation__list {
+    width: 170px;
+    margin: 0 15px;
+}
+
+.contacts {
+    height: 133px;
+    width: 170px;
+
+    font-size: 15px;
+    line-height: 19px;
+
+    color: #A9C5E0;
+}

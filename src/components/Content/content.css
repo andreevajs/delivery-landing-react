@@ -1,0 +1,24 @@
+.content {
+    max-width: 1230px;
+    margin: 0 auto;
+}
+
+.content__title {
+    height: 34px;
+    margin-top: 96px;
+
+    font-family: Proxima Nova;
+    font-size: 28px;
+    line-height: 34px;
+    text-align: center;
+
+    color: #2A496B;
+}
+
+.steps {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;    
+    margin-top: 140px;
+    margin-bottom: 30px;
+}
