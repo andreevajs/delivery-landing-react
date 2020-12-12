@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import "./carousel.css";
+import "./carousel.less";
 
 class Carousel extends Component {
     constructor(props) {
@@ -30,7 +30,6 @@ class Carousel extends Component {
                             {!(bullet.index == this.state.currentSlide) && <div className="bullet__center"></div>}
                         </span>)}
                 </div>
-                <button className="carousel__button">Заказать доставку</button>
             </div>
         );
     }
@@ -44,14 +43,14 @@ class Carousel extends Component {
     }
 
     componentDidMount() {
-        this.timerID = setInterval(
+        this.slideSwitchTimerId = setInterval(
           () => this.showNext(),
           5000
         );
     }
     
     componentWillUnmount() {
-        clearInterval(this.timerID);
+        clearInterval(this.slideSwitchTimerId);
     }
     
     showNext() {

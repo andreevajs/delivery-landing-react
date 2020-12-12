@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import "./logo.css";
+import "./logo.less";
 import Icon from "../../resources/img/logo.svg";
 import CompanyName from "../../resources/img/company-name.svg";
 

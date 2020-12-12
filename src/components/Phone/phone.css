@@ -1,9 +1,8 @@
 .phone {
-    float: right;
+    width: max-content;
 }
 
 .phone__number {
-    width: 146px;
     height: 21px;
     margin-left: 12px;
 

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import "./content.css"
+import "./content.less"
 import Step from "../Step/Step"
 import Icon1 from "../../resources/img/ico1.png";
 import Icon2 from "../../resources/img/ico2.png";

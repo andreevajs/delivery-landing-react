@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import "./slide.css";
+import "./slide.less";
 
 class Slide extends Component {
     constructor(props) {
@@ -10,11 +10,14 @@ class Slide extends Component {
     render() {
         return (
             <div id={this.props.id} className="slide">
-                <img className="slide__img" src={this.props.img}></img>
                 <div className="slide__content">
                     <div className="slide__title">{this.props.title}</div>
                     <div className="slide__subtitle">{this.props.subtitle}</div>
+                    <button className="slide__button">Заказать доставку</button>
                 </div>
+                <div className="slide__img-wrapper">
+                    <img className="slide__img" src={this.props.img}></img> 
+                </div>                             
             </div>
         );
     }

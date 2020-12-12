@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import "./modal.css";
-import "./authorization.css";
+import "./modal.less";
+import "./authorization.less";
 import CloseIcon from '../../resources/img/close.svg';
 
 class AuthorizationModal extends Component {
@@ -24,7 +24,7 @@ class AuthorizationModal extends Component {
                             </div> 
                             <input className="authorization-form__input" type="text" placeholder="Логин"/>
                             <input className="authorization-form__input" type="password" placeholder="Пароль"/>
-                            <input className="authorization-form__submit-button" type="submit" value="Войти" onClick={(e) => this.onSubmitClick(e)}/>
+                            <input className="authorization-form__submit-button" type="submit" value="Войти"/>
                         </form>  
                     </div>                
                 </div>

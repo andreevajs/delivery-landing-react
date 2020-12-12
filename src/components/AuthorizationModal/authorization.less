@@ -1,6 +1,16 @@
+@import "../../styles.less";
+
 .authorization-form {
+    margin: 60px;
     display: flex;
     flex-flow: column;
+
+    @media @screen-mobile {
+        margin: auto 15px;
+        position: absolute;
+        top: 50%;
+        transform: translate(0,-50%);
+    }
 }
 
 .authorization-form > * {

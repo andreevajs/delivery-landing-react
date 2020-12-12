@@ -1,0 +1,70 @@
+@import "../../styles.less";
+
+.slide {
+    height: 100%;
+    width: 100%;
+}
+
+.slide__content {
+    width: 660px;
+    @media @screen-mobile {
+        max-width: 345px;
+        width: 100%;
+    }
+    margin-top: 168px;
+    float: left;
+}
+
+.slide__title {
+    font-size: 64px;
+    line-height: 64px;
+    font-weight: bold;
+    margin-bottom: 18px;
+
+    color: #FFFFFF;
+    @media @screen-mobile {
+        font-size: 38px;
+        line-height: 46px;
+    }
+}
+
+.slide__subtitle {
+    font-family: Proxima Nova;
+    font-size: 16px;
+    line-height: 24px;
+    max-width: 550px;
+
+    color: #FFFFFF;
+}
+
+.slide__button {
+    width: 240px;
+    height: 52px;
+    margin-top: 87px;
+
+    background: @color-accent-yellow;
+    border-radius: 10px;
+    border: 0;
+
+    font-size: 18px;
+    line-height: 22px;
+
+    color: #2A4F71;
+
+    @media @screen-tablet {
+        display: none;
+    }
+}
+
+.slide__img-wrapper {
+    height: 100%;
+}
+
+.slide__img {    
+    position: absolute;
+    bottom: 0;
+    @media @screen-tablet {
+        display: none;
+    }
+}
+

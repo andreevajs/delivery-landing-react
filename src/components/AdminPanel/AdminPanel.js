@@ -1,31 +1,32 @@
 import React, { Component } from "react";
 
-import "./reset.css";
-import "./app.css";
 import Content from "../Content/Content.js";
 import Header from "../Header/Header.js";
 import Footer from "../Footer/Footer.js";
 import AuthorizationModal from "../AuthorizationModal/AuthorizationModal";
+import AddNewsForm from "../AddNewsForm/AddNewsForm";
+import Slide from "../Slide/Slide";
 
-class App extends Component {
+import SlideImg1 from '../../resources/img/slide1.png';
+import SlideImg2 from '../../resources/img/slide2.png';
+
+
+class AdminPanel extends Component {
     constructor(props) {
         super(props);
-        this.page = <Content/>
         this.state = {
-            modalOpened: false,
-            page: this.page
+            modalOpened: false
         }
     }
 
     render() {
         return (
+            
             <div>
                 {this.state.modalOpened && 
-                <AuthorizationModal 
-                    onSubmitClick={() => this.openAdminPage()}
-                    onCloseClick={() => this.setModalVisible(false)}/>}
+                <AuthorizationModal onCloseClick={() => this.setModalVisible(false)}/>}
                 <Header onLoginClick = {() => this.setModalVisible(true)} />
-                {this.state.page}
+                <AddNewsForm symbolsLimit={500}/>
                 <Footer />
             </div>
         );
@@ -33,15 +34,9 @@ class App extends Component {
 
     setModalVisible(isVisible) {
         this.setState({
-            modalOpened: isVisible,
-            page: this.page
+            modalOpened: isVisible
         });
-    }
-
-    openAdminPage() {
-        this.page = <div>Admin</div>
-        this.setModalVisible(false);
     }
 }
 
-export default App;
+export default AdminPanel;
