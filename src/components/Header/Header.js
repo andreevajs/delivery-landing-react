@@ -19,9 +19,9 @@ class Header extends Component {
                         <div className="header__logo">
                             <Logo />                            
                             <div className="separation-line"/>
-                            <span className="tagline">
+                            <div className="tagline">
                                 Курьерская служба доставки
-                            </span>
+                            </div>
                         </div>
                         <div className="header__right-block">
                             <div className="header__phone">

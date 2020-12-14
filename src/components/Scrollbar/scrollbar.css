@@ -1,0 +1,14 @@
+.scrollbar__background {
+    width: 100%;
+    height: 100%;
+
+    background: rgba(208, 201, 214, 0.3);
+    border-radius: 6px;
+}
+
+.scrollbar__foreground {
+    position: relative;
+    width: 100%;
+    background: #D0C9D6;
+    border-radius: 6px;
+}

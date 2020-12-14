@@ -1,14 +1,12 @@
 import React, { Component } from "react";
 
-import Content from "../Content/Content.js";
+import "./adminpanel.less";
+
 import Header from "../Header/Header.js";
 import Footer from "../Footer/Footer.js";
 import AuthorizationModal from "../AuthorizationModal/AuthorizationModal";
 import AddNewsForm from "../AddNewsForm/AddNewsForm";
-import Slide from "../Slide/Slide";
 
-import SlideImg1 from '../../resources/img/slide1.png';
-import SlideImg2 from '../../resources/img/slide2.png';
 
 
 class AdminPanel extends Component {
@@ -26,7 +24,9 @@ class AdminPanel extends Component {
                 {this.state.modalOpened && 
                 <AuthorizationModal onCloseClick={() => this.setModalVisible(false)}/>}
                 <Header onLoginClick = {() => this.setModalVisible(true)} />
-                <AddNewsForm symbolsLimit={500}/>
+                <div className="admin-panel__content">
+                    <AddNewsForm symbolsLimit={500}/>
+                </div>               
                 <Footer />
             </div>
         );

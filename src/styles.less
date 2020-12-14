@@ -1,4 +1,10 @@
-@color-accent-yellow: #E5E31F;
+@color-accent: #E5E31F;
+@color-dark: #23415E;
+@color-main-light: #FFF;
+@color-text-dark: #2A4F71;
+@color-secondary: #A9C5E0;
+@color-warning: #FF2323;
+
 
 @screen-tablet: ~"(max-width: 768px)";
 @screen-mobile: ~"(max-width: 375px)";
@@ -9,7 +15,23 @@ body {
 }
 
 .upper-level {
-    max-width: 1140px;
+    max-width: 1170px;
     padding-left: 15px;
     padding-right: 15px;
+    margin: 0 auto;
+}
+
+.close-icon {
+    height: 18px;
+    width: 18px;
+    background: url("./resources/img/close.svg");
+}
+
+.vertical-center {
+    display: flex;
+    align-items: center;
+}
+
+.text-warning {
+    color: @color-warning
 }

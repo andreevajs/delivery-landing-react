@@ -6,12 +6,12 @@
 }
 
 .slide__content {
-    width: 660px;
+    max-width: 660px;
     @media @screen-mobile {
         max-width: 345px;
         width: 100%;
     }
-    margin-top: 168px;
+    margin-top: 102px;
     float: left;
 }
 
@@ -33,6 +33,7 @@
     font-size: 16px;
     line-height: 24px;
     max-width: 550px;
+    height: 135px;
 
     color: #FFFFFF;
 }
@@ -40,19 +41,21 @@
 .slide__button {
     width: 240px;
     height: 52px;
-    margin-top: 87px;
-
-    background: @color-accent-yellow;
+    background: @color-accent;
     border-radius: 10px;
     border: 0;
-
     font-size: 18px;
     line-height: 22px;
 
-    color: #2A4F71;
+    color: @color-text-dark;
 
     @media @screen-tablet {
         display: none;
+    }
+
+    @media @screen-mobile {
+        display: initial;
+        width: 100%;
     }
 }
 

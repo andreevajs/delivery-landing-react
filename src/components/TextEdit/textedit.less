@@ -1,0 +1,32 @@
+@import "../../styles.less";
+
+@color-text-light: #D0C9D6;
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+    height: 144px;
+    resize: none;
+
+    font-family: inherit;
+    font-size: 16px;
+    line-height: 24px;
+    padding: 22px 16px;
+    border: 1px solid @color-dark;
+    border-radius: 6px;
+}
+
+textarea::placeholder {
+    color: @color-text-light;
+}
+
+.symbols-count {
+    font-size: 12px;
+    height: 20px;
+    margin-top: 4px;
+    text-align: right;
+    color: @color-text-light;
+}
+
+.symbols-count.normal {
+    color: inherit;
+}
