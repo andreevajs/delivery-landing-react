@@ -13,6 +13,7 @@ class AuthorizationModal extends Component {
         return (
             <div>
                 <div className="modal">
+                <div className="modal__bg" onClick={() => this.props.onCloseClick()}></div>
                     <div className="modal__content">
                         <CloseIcon className="modal__close-icon" onClick={() => this.props.onCloseClick()}/>
                         <form className="authorization-form">
@@ -26,7 +27,7 @@ class AuthorizationModal extends Component {
                             <input className="authorization-form__input" type="password" placeholder="Пароль"/>
                             <input className="authorization-form__submit-button" type="submit" value="Войти"/>
                         </form>  
-                    </div>                
+                    </div>           
                 </div>
             </div>
         );

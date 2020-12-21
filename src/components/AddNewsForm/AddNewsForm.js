@@ -11,6 +11,7 @@ class AddNewsForm extends Component {
         super(props);
         this.fileInput = document.createElement("input");
         this.fileInput.type = "file";
+        this.fileInput.accept = "image/*";
         this.fileInput.oninput = () => this.onFilesSelected(this.fileInput.files);
         this.state = {
             file: null

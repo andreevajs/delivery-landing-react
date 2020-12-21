@@ -37,7 +37,7 @@ class Main extends Component {
                                 id="slide-2"
                                 title="Срочная доставка день в день"
                                 subtitle="Для тех, кто не может ждать у нас есть услуга срочной курьерской доставки корреспондеции и других видов отправлений."
-                                img={SlideImg2}/>,
+                                img={SlideImg2}/>
                         ]}/> 
                     }
                     onLoginClick = {() => this.setModalVisible(true)} />

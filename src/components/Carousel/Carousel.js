@@ -22,7 +22,12 @@ class Carousel extends Component {
         return (
             <div className="carousel">
                 <div className="carousel__slide">
-                    {this.props.slides[this.state.currentSlide]}
+                    <div style={{marginLeft: this.state.shift + '%'}}>
+                        {this.props.slides[this.state.currentSlide]}
+                    </div>
+                    <div style={{marginLeft: (100 + this.state.shift) + '%'}}>
+                        {this.props.slides[this.state.nextSlide]}
+                    </div>
                 </div>
                 <div className="carousel__swiper-bullets">
                     { this.bullets.map((bullet) => 
@@ -62,9 +67,45 @@ class Carousel extends Component {
     }
 
     show(index) {
-        this.setState({
-            currentSlide: index
+        this.animate(
+            this.reversedPowTiming,
+            (progress) => this.setState({
+                currentSlide: index,
+                nextSlide: (this.slides.length == index+1) ? 0 : index + 1,
+                shift: -progress*100}),
+            2000
+        );
+    }
+
+    animate(timing, draw, duration) {
+        let start = performance.now();
+      
+        requestAnimationFrame(function animate(time) {
+          // timeFraction изменяется от 0 до 1
+          let timeFraction = (time - start) / duration;
+          if (timeFraction > 1) timeFraction = 1;
+      
+          // вычисление текущего состояния анимации
+          let progress = timing(timeFraction);
+      
+          draw(progress); // отрисовать её
+      
+          if (timeFraction < 1) {
+            requestAnimationFrame(animate);
+          }      
         });
+    }
+
+    linearTiming(timeFraction) {
+        return timeFraction;
+    }
+
+    quad(timeFraction) {
+        return Math.pow(timeFraction, 4)
+    }
+
+    reversedPowTiming(timeFraction) {
+        return 1 - Math.pow(timeFraction-1, 4)
     }
 }
 
