@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Scrollbar from "../Scrollbar/Scrollbar";
 
 import "./textedit.less";
 
@@ -10,6 +11,7 @@ class TextEdit extends Component {
             symbolsCount: 0
         }
         props.createRef(this);
+        this.textareaRef = React.createRef();
     }
 
     render() {
@@ -19,22 +21,32 @@ class TextEdit extends Component {
                     {(this.state.displayErrors && this.isOverLimit()) ? "Превышен лимит символов" : ""}
                 </div>
 
-                <textarea 
-                    className= { (this.state.displayErrors && this.isEmpty()) 
-                        ? "textarea red"
-                        : "textarea"}
-                    placeholder="Введите текст новости"
-                    onChange={(e) => this.onTextareaInput(e)}/>
+                <div className="text-edit__content">
+                    <div className="text-edit__textarea-wrap">
+                        <textarea 
+                            className= { (this.state.displayErrors && this.isEmpty()) 
+                                ? "text-edit__textarea red"
+                                : "text-edit__textarea"}
+                            placeholder="Введите текст новости"
+                            onChange={(e) => this.onTextareaInput(e)}
+                            ref={this.textareaRef}/>
 
-                <div className="symbols-count">
-                    <p>Cимволов:&nbsp; 
-                    <span className= { 
-                        (this.isOverLimit()) 
-                            ? "text-edit__symbols-red"
-                            : "symbols-count normal"}>
-                    {this.state.symbolsCount}</span >
-                    /{this.props.symbolsLimit}</p>
-                </div>
+                        <div className="symbols-count">
+                            <p>Cимволов:&nbsp; 
+                            <span className= { 
+                                (this.isOverLimit()) 
+                                    ? "text-edit__"
+                                    : "symbols-count normal"}>
+                            {this.state.symbolsCount}</span >
+                            /{this.props.symbolsLimit}</p>
+                        </div>
+                    </div>
+                    
+                    <div className="text-edit__scrollbar">
+                        <Scrollbar
+                            targetRef={this.textareaRef} /> 
+                    </div>                    
+                </div>                
             </div>
         );
     }
@@ -56,6 +68,11 @@ class TextEdit extends Component {
     }
 
     validate() {
+        console.log(this.textareaRef.current.scrollTop);
+        console.log(this.textareaRef.current.scrollHeight);
+        this.textareaRef.current.scrollTop = this.textareaRef.current.scrollHeight;
+        console.log(this.textareaRef.current.scrollTop);
+        console.log(this.textareaRef.current.scrollHeight);
         if (this.isEmpty()) {
             this.setState({
                 displayErrors: true,
