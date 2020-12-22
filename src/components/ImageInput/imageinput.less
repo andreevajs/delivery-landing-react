@@ -1,0 +1,48 @@
+@import "../../styles.less";
+
+.image-input {
+    .vertical-center();
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 620px;
+    width: 100%;
+    min-height: 34px;
+    white-space: nowrap;
+}
+
+.add-image-button {
+    .vertical-center();
+    height: 24px;
+    background: transparent;
+    border: none;;
+    margin: 15px 10px 15px 0;
+    
+    font-style: normal;
+    font-weight: 600;
+
+    color: #2A496B;
+}
+
+.add-image-button__img {
+    fill: #2A496B;
+    margin-right: 16px;
+}
+
+.file-preview {
+    .vertical-center();
+    margin: 15px 0;
+}
+
+.file-preview__image {
+    width: 34px;
+    height: 34px;
+}
+
+.file-preview__filename {
+    margin: 0 10px 0 35px;
+}
+
+.image-input__error-message {
+    height: 24px;
+    color: @color-warning;
+}

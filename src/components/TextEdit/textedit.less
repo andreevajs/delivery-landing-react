@@ -1,7 +1,7 @@
 @import "../../styles.less";
 
 @color-text-light: #D0C9D6;
-textarea {
+.textarea {
     width: 100%;
     box-sizing: border-box;
     height: 144px;
@@ -15,13 +15,18 @@ textarea {
     border-radius: 6px;
 }
 
-textarea::placeholder {
+.textarea::placeholder {
+    opacity: 1;
     color: @color-text-light;
+}
+
+.textarea.red::placeholder {
+    color: @color-warning;
 }
 
 .symbols-count {
     font-size: 12px;
-    height: 20px;
+    line-height: 20px;
     margin-top: 4px;
     text-align: right;
     color: @color-text-light;
@@ -29,4 +34,15 @@ textarea::placeholder {
 
 .symbols-count.normal {
     color: inherit;
+}
+
+.text-edit__error-message {
+    height: 20px;
+    padding-left: 17px;
+    padding-bottom: 10px;
+    color: @color-warning;
+}
+
+.text-edit__symbols-red {
+    color: @color-warning;
 }
