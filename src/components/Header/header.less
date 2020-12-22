@@ -1,6 +1,7 @@
 @import "../../styles.less";
 
 @navigation-height: 52px;
+@screen-disable-tag: ~"(max-width: 600px)";
 
 .header {
     background: radial-gradient(
@@ -42,7 +43,7 @@
     border: 1px solid @color-secondary;
     display: inline-block;
 
-    @media (max-width: 600px) {
+    @media @screen-disable-tag{
         display: none;
     }
 }
@@ -56,7 +57,7 @@
     white-space: nowrap;
     color: @color-secondary;
 
-    @media (max-width: 600px) {
+    @media @screen-disable-tag{
         display: none;
     }
 }
@@ -69,6 +70,12 @@
 
     @media @screen-mobile {
         flex-grow: 1;
+    }
+
+    @media @screen-tablet {
+        flex-wrap: nowrap;
+        align-items: flex-end;
+        flex-direction: column-reverse;
     }
 }
 
@@ -96,5 +103,9 @@
         margin: 0;
         width: 100%;
         max-width: 170px;
+    }
+
+    @media @screen-tablet {
+        margin-left: 0;
     }
 }
