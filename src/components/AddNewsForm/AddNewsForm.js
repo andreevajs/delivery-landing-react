@@ -36,7 +36,7 @@ class AddNewsForm extends Component {
                                 <p className="file-preview__filename">{this.state.file.name}</p>
                                 <CloseIcon className="close-icon" onClick={() => this.removeFile()}/>
                               </div>
-                            : <div className="file-preview__message-invalid">Неверный формат изображения</div>
+                            : <div className="file-preview__message-invalid">{this.state.file.msg}</div>
                         )}
                     </div>
                 </div>
@@ -60,23 +60,37 @@ class AddNewsForm extends Component {
             return;
         }
 
-        let filename = files[0].name;
-        if(!filename.endsWith(".png") && !filename.endsWith(".jpg")) {
-            this.setState({file: {isValid: false}});
+        if (files[0].type != "image/png" && files[0].type != "image/jpeg") {
+            this.setState({file: {
+                isValid: false,
+                msg: "Неверный формат изображения"
+            }});
             return;
         }
 
         var reader = new FileReader();
-        reader.onload = () =>
-            this.setState({
-                file: { 
-                    isValid: true,
-                    name: filename,
-                    src: reader.result
-                }
-            });
+        reader.onload = () => {
+            var img = new Image;
+            img.onload = () => {
+              if (img.height != 270 && img.width != 270) {
+                this.setState({file: {
+                    isValid: false,
+                    msg: "Неверный размер изображения"
+                }});
+              } else {
+                this.setState({
+                    file: { 
+                        isValid: true,
+                        name: files[0].name + " " + files[0].size,
+                        src: reader.result
+                    }
+                });
+              }
+            };
+            img.src = reader.result;            
+        }            
         reader.readAsDataURL(files[0]);
-        console.log(files);
+        
     }
 
     removeFile() {

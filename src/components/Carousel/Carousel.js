@@ -21,11 +21,11 @@ class Carousel extends Component {
     render() {
         return (
             <div className="carousel">
-                <div className="carousel__slide">
-                    <div style={{marginLeft: this.state.shift + '%'}}>
+                <div className="carousel__slides">
+                    <div className="carousel__slide" style={{marginLeft: this.state.shift + '%'}}>
                         {this.props.slides[this.state.currentSlide]}
                     </div>
-                    <div style={{marginLeft: (100 + this.state.shift) + '%'}}>
+                    <div className="carousel__slide" style={{marginLeft: (100 + this.state.shift) + '%'}}>
                         {this.props.slides[this.state.nextSlide]}
                     </div>
                 </div>
