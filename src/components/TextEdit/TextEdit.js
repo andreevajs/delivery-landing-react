@@ -35,7 +35,7 @@ class TextEdit extends Component {
                             <p>Cимволов:&nbsp; 
                             <span className= { 
                                 (this.isOverLimit()) 
-                                    ? "text-edit__"
+                                    ? "text-edit__symbols-red"
                                     : "symbols-count normal"}>
                             {this.state.symbolsCount}</span >
                             /{this.props.symbolsLimit}</p>
