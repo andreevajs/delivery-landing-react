@@ -23,15 +23,15 @@ class Carousel extends Component {
             <div className="carousel">
                 <div className="carousel__slides">
                     <div className="carousel__slide" style={{marginLeft: this.state.shift + '%'}}>
-                        {this.props.slides[this.state.currentSlide]}
+                        {this.props.slides[this.state.previousSlide]}
                     </div>
                     <div className="carousel__slide" style={{marginLeft: (100 + this.state.shift) + '%'}}>
-                        {this.props.slides[this.state.nextSlide]}
+                        {this.props.slides[this.state.currentSlide]}
                     </div>
                 </div>
                 <div className="carousel__swiper-bullets">
                     { this.bullets.map((bullet) => 
-                        <span className="bullet" onClick={() => this.show(bullet.index)}>
+                        <span className="bullet" onClick={() => this.onBulletClick(bullet.index)}>
                             {!(bullet.index == this.state.currentSlide) && <div className="bullet__center"></div>}
                         </span>)}
                 </div>
@@ -47,6 +47,11 @@ class Carousel extends Component {
         }
     }
 
+    onBulletClick(index) {
+        this.show(index);
+        this.resetTimer();
+    }
+
     componentDidMount() {
         this.slideSwitchTimerId = setInterval(
           () => this.showNext(),
@@ -56,6 +61,14 @@ class Carousel extends Component {
     
     componentWillUnmount() {
         clearInterval(this.slideSwitchTimerId);
+    }
+
+    resetTimer() {
+        clearInterval(this.slideSwitchTimerId);
+        this.slideSwitchTimerId = setInterval(
+            () => this.showNext(),
+            5000
+        );
     }
     
     showNext() {
@@ -67,11 +80,12 @@ class Carousel extends Component {
     }
 
     show(index) {
+        let previousIndex = this.state.currentSlide;
         this.animate(
             this.reversedPowTiming,
             (progress) => this.setState({
+                previousSlide: previousIndex,
                 currentSlide: index,
-                nextSlide: (this.slides.length == index+1) ? 0 : index + 1,
                 shift: -progress*100}),
             2000
         );
