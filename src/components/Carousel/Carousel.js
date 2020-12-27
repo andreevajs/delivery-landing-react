@@ -7,49 +7,47 @@ class Carousel extends Component {
         super(props);
 
         this.slides = props.slides;
-        
-        this.bullets = [];
-        for(let i = 0; i < this.slides.length; i++) {
-            this.bullets.push({index: i, current: false});
-        }
+        this.leftSlide = 0;
+        this.rightSlide = Math.max(1, this.slides.length);
 
         this.state = {
-            currentSlide: 0
+            activeSlide: 0,
+            shift: 0
         };
     }
 
     render() {
+        let bullets = [];
+
+        for(let i = 0; i < this.slides.length; i++) {
+            if (i != this.state.activeSlide) {
+                bullets.push(
+                    <span className="bullet" onClick={() => this.onBulletClick(i)}>
+                        <div className="bullet__center"></div>
+                    </span>
+                );
+            } else {
+                bullets.push(
+                    <span className="bullet"></span>
+                );
+            }
+        }
+
         return (
             <div className="carousel">
                 <div className="carousel__slides">
                     <div className="carousel__slide" style={{marginLeft: this.state.shift + '%'}}>
-                        {this.props.slides[this.state.previousSlide]}
+                        {this.slides[this.leftSlide]}
                     </div>
-                    <div className="carousel__slide" style={{marginLeft: (100 + this.state.shift) + '%'}}>
-                        {this.props.slides[this.state.currentSlide]}
+                    <div className="carousel__slide" style={{marginLeft: 100 + this.state.shift + '%'}}>
+                        {this.slides[this.rightSlide]}
                     </div>
                 </div>
                 <div className="carousel__swiper-bullets">
-                    { this.bullets.map((bullet) => 
-                        <span className="bullet" onClick={() => this.onBulletClick(bullet.index)}>
-                            {!(bullet.index == this.state.currentSlide) && <div className="bullet__center"></div>}
-                        </span>)}
+                    {bullets}
                 </div>
             </div>
         );
-    }
-
-    renderBullets() {
-        for(let i = 0; i < this.slides.length; i++) {
-            let bullet = document.createElement("span");
-            bullet.className = "bullet";
-            bullet.click += () => this.show(i);
-        }
-    }
-
-    onBulletClick(index) {
-        this.show(index);
-        this.resetTimer();
     }
 
     componentDidMount() {
@@ -63,6 +61,14 @@ class Carousel extends Component {
         clearInterval(this.slideSwitchTimerId);
     }
 
+    onBulletClick(index) {
+        if (index > this.state.activeSlide)
+            this.show(index);
+        else
+            this.showReversed(index);
+        this.resetTimer();
+    }
+
     resetTimer() {
         clearInterval(this.slideSwitchTimerId);
         this.slideSwitchTimerId = setInterval(
@@ -72,21 +78,34 @@ class Carousel extends Component {
     }
     
     showNext() {
-        console.log("next");
-        if (this.state.currentSlide == this.slides.length -1)
+        if (this.state.activeSlide == this.slides.length -1)
             this.show(0);
         else
-            this.show(this.state.currentSlide + 1);
+            this.show(this.state.activeSlide + 1);
     }
 
     show(index) {
-        let previousIndex = this.state.currentSlide;
+        this.leftSlide = this.state.activeSlide;
+        this.rightSlide = index;     
+
         this.animate(
             this.reversedPowTiming,
             (progress) => this.setState({
-                previousSlide: previousIndex,
-                currentSlide: index,
-                shift: -progress*100}),
+                activeSlide: index,
+                shift:  -progress*100}),
+            2000
+        );
+    }
+
+    showReversed(index) {
+        this.leftSlide = index;
+        this.rightSlide = this.state.activeSlide;
+
+        this.animate(
+            this.reversedPowTiming,
+            (progress) => this.setState({
+                activeSlide: index,
+                shift: (progress-1)*100}),
             2000
         );
     }
@@ -95,27 +114,19 @@ class Carousel extends Component {
         let start = performance.now();
       
         requestAnimationFrame(function animate(time) {
-          // timeFraction изменяется от 0 до 1
-          let timeFraction = (time - start) / duration;
-          if (timeFraction > 1) timeFraction = 1;
-      
-          // вычисление текущего состояния анимации
-          let progress = timing(timeFraction);
-      
-          draw(progress); // отрисовать её
-      
-          if (timeFraction < 1) {
-            requestAnimationFrame(animate);
-          }      
+            // timeFraction изменяется от 0 до 1
+            let timeFraction = (time - start) / duration;
+            if (timeFraction > 1) timeFraction = 1;
+        
+            // вычисление текущего состояния анимации
+            let progress = timing(timeFraction);
+        
+            draw(progress);
+        
+            if (timeFraction < 1) {
+                requestAnimationFrame(animate);
+            }      
         });
-    }
-
-    linearTiming(timeFraction) {
-        return timeFraction;
-    }
-
-    quad(timeFraction) {
-        return Math.pow(timeFraction, 4)
     }
 
     reversedPowTiming(timeFraction) {
