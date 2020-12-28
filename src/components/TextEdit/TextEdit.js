@@ -68,11 +68,7 @@ class TextEdit extends Component {
     }
 
     validate() {
-        console.log(this.textareaRef.current.scrollTop);
-        console.log(this.textareaRef.current.scrollHeight);
         this.textareaRef.current.scrollTop = this.textareaRef.current.scrollHeight;
-        console.log(this.textareaRef.current.scrollTop);
-        console.log(this.textareaRef.current.scrollHeight);
         if (this.isEmpty()) {
             this.setState({
                 displayErrors: true,
